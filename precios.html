@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarjex | Precios</title>
+  <meta name="description" content="Precios de Tarjex: tarjetas de reseñas NFC, menús digitales y páginas web para negocios.">
+  <style>
+    :root{
+      --cyan:#1DB887;
+      --cyan-dark:#0D9F76;
+      --yellow:#F4D574;
+      --dark:#0B1117;
+      --dark-2:#111A22;
+      --white:#fff;
+      --gray-light:#F6F8F9;
+      --gray-medium:#E5E9EC;
+      --gray-dark:#66717D;
+      --text-primary:#101820;
+      --text-secondary:#65717D;
+      --container:1180px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text-primary);
+      background:#fff;
+      line-height:1.5;
+    }
+    a{text-decoration:none;color:inherit}
+    .container{width:min(var(--container),calc(100% - 40px));margin:auto}
+
+    /* NAV */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,255,255,.88);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(16,24,32,.07);
+    }
+    .nav{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:30px;
+    }
+    .logo{
+      font-size:27px;
+      font-weight:850;
+      letter-spacing:-1.5px;
+    }
+    .logo span{color:var(--cyan)}
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      list-style:none;
+      color:var(--gray-dark);
+      font-size:14px;
+      font-weight:600;
+    }
+    .nav-links a{transition:.2s ease}
+    .nav-links a:hover{color:var(--text-primary)}
+    .nav-cta{
+      padding:11px 18px;
+      border-radius:12px;
+      background:var(--cyan);
+      color:#fff!important;
+      box-shadow:0 8px 20px rgba(29,184,135,.18);
+    }
+
+    /* HERO */
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:92px 0 72px;
+      text-align:center;
+      background:
+        radial-gradient(circle at 15% 20%,rgba(29,184,135,.10),transparent 28%),
+        radial-gradient(circle at 85% 10%,rgba(244,213,116,.13),transparent 25%),
+        linear-gradient(180deg,#fff 0%,#F7FAF9 100%);
+    }
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:420px;height:420px;
+      right:-210px;top:-220px;
+      border:1px solid rgba(29,184,135,.16);
+      border-radius:50%;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 12px;
+      border:1px solid rgba(29,184,135,.18);
+      border-radius:999px;
+      background:rgba(29,184,135,.06);
+      color:var(--cyan-dark);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+      margin-bottom:20px;
+    }
+    .eyebrow i{
+      width:7px;height:7px;border-radius:50%;
+      background:var(--cyan);
+      display:block;
+    }
+    h1{
+      max-width:780px;
+      margin:auto;
+      font-size:clamp(42px,6vw,72px);
+      line-height:.98;
+      letter-spacing:-3.5px;
+      font-weight:850;
+    }
+    h1 em{
+      font-style:normal;
+      background:linear-gradient(100deg,#11A97E,#1DB887 48%,#D8B73E);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .hero p{
+      max-width:650px;
+      margin:24px auto 0;
+      color:var(--text-secondary);
+      font-size:17px;
+      line-height:1.8;
+    }
+
+    /* PRICING */
+    .pricing{
+      padding:35px 0 105px;
+      background:linear-gradient(180deg,#F7FAF9 0%,#fff 35%);
+    }
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:22px;
+      align-items:stretch;
+    }
+    .card{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+      background:#fff;
+      border:1px solid #E7ECEE;
+      border-radius:25px;
+      box-shadow:0 15px 42px rgba(15,20,25,.055);
+      transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+    }
+    .card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 25px 60px rgba(15,20,25,.09);
+      border-color:rgba(29,184,135,.28);
+    }
+    .card-top{
+      padding:30px 28px 22px;
+      border-bottom:1px solid #EEF1F2;
+    }
+    .number{
+      width:38px;height:38px;
+      display:grid;place-items:center;
+      border-radius:12px;
+      background:#E4FAF2;
+      color:var(--cyan-dark);
+      font-weight:850;
+      font-size:13px;
+      margin-bottom:20px;
+    }
+    .tag{
+      color:var(--cyan-dark);
+      font-size:11px;
+      font-weight:850;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:8px;
+      display:block;
+    }
+    .card h2{
+      font-size:27px;
+      line-height:1.1;
+      letter-spacing:-1px;
+      margin-bottom:11px;
+    }
+    .card-description{
+      color:var(--text-secondary);
+      font-size:14px;
+      line-height:1.7;
+    }
+    .card-body{
+      padding:25px 28px 28px;
+      display:flex;
+      flex-direction:column;
+      flex:1;
+    }
+    .price-box{
+      padding:17px;
+      border-radius:16px;
+      background:linear-gradient(135deg,#F7FAF9,#fff);
+      border:1px solid #E9EFED;
+      margin-bottom:20px;
+    }
+    .price-label{
+      color:var(--gray-dark);
+      font-size:11px;
+      font-weight:750;
+      text-transform:uppercase;
+      letter-spacing:.07em;
+    }
+    .price{
+      margin-top:4px;
+      font-size:31px;
+      font-weight:850;
+      letter-spacing:-1.2px;
+    }
+    .price small{
+      font-size:14px;
+      font-weight:650;
+      color:var(--gray-dark);
+      letter-spacing:0;
+    }
+    .price-note{
+      margin-top:2px;
+      color:var(--gray-dark);
+      font-size:12px;
+    }
+    .features{
+      list-style:none;
+      display:grid;
+      gap:12px;
+      margin:4px 0 26px;
+    }
+    .features li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      color:#26333C;
+      font-size:13px;
+      line-height:1.5;
+    }
+    .check{
+      flex:0 0 20px;
+      width:20px;height:20px;
+      display:grid;place-items:center;
+      border-radius:50%;
+      background:#E5F8F1;
+      color:var(--cyan);
+      font-size:11px;
+      font-weight:900;
+      margin-top:1px;
+    }
+    .btn{
+      margin-top:auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      min-height:48px;
+      padding:12px 18px;
+      border-radius:13px;
+      background:var(--cyan);
+      color:#fff;
+      font-size:13px;
+      font-weight:800;
+      box-shadow:0 9px 22px rgba(29,184,135,.18);
+      transition:.2s ease;
+    }
+    .btn:hover{background:var(--cyan-dark);transform:translateY(-2px)}
+    .btn-outline{
+      background:#fff;
+      color:var(--cyan-dark);
+      border:1px solid rgba(29,184,135,.35);
+      box-shadow:none;
+    }
+    .btn-outline:hover{background:#F2FBF8}
+    .extra{
+      margin-top:17px;
+      padding:13px 14px;
+      border-radius:13px;
+      background:#FBFAF2;
+      border:1px solid rgba(244,213,116,.45);
+      color:#635827;
+      font-size:12px;
+      line-height:1.55;
+    }
+    .extra strong{color:#4E451F}
+
+    /* MENU SPECIAL */
+    .menu-card{
+      border-color:rgba(29,184,135,.3);
+      box-shadow:0 20px 55px rgba(29,184,135,.10);
+    }
+    .recommended{
+      position:absolute;
+      right:18px;
+      top:18px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:var(--dark);
+      color:#fff;
+      font-size:10px;
+      font-weight:800;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+    }
+    .menu-pricing{
+      display:grid;
+      gap:11px;
+      margin-bottom:20px;
+    }
+    .menu-payment{
+      padding:16px;
+      border-radius:16px;
+      border:1px solid #E7ECEE;
+      background:#fff;
+    }
+    .menu-payment.monthly{
+      background:linear-gradient(135deg,#E8F9F3,#F8F4DF);
+      border-color:rgba(29,184,135,.2);
+    }
+    .payment-title{
+      font-size:12px;
+      font-weight:850;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      color:var(--gray-dark);
+    }
+    .payment-price{
+      margin-top:3px;
+      font-size:25px;
+      font-weight:850;
+      letter-spacing:-.8px;
+    }
+    .payment-text{
+      color:var(--gray-dark);
+      font-size:11px;
+      line-height:1.5;
+      margin-top:3px;
+    }
+    .maintenance{
+      margin:3px 0 20px;
+    }
+    .maintenance h3{
+      font-size:14px;
+      margin-bottom:9px;
+    }
+    .maintenance p{
+      color:var(--text-secondary);
+      font-size:12px;
+      line-height:1.65;
+      margin-bottom:12px;
+    }
+
+    /* MAINTENANCE EXPLAINER */
+    .why{
+      padding:90px 0;
+      background:var(--dark);
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+    }
+    .why:before{
+      content:"";
+      position:absolute;
+      width:520px;height:520px;
+      left:-250px;bottom:-300px;
+      border:1px solid rgba(29,184,135,.2);
+      border-radius:50%;
+    }
+    .why-head{
+      max-width:680px;
+      margin-bottom:38px;
+    }
+    .why-kicker{
+      color:var(--cyan);
+      font-size:11px;
+      font-weight:850;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      margin-bottom:10px;
+    }
+    .why h2{
+      font-size:clamp(30px,4vw,46px);
+      line-height:1.05;
+      letter-spacing:-1.8px;
+      margin-bottom:15px;
+    }
+    .why-head p{
+      color:#AEB9C0;
+      font-size:15px;
+      line-height:1.8;
+    }
+    .maintenance-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:13px;
+    }
+    .maintenance-item{
+      padding:20px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.025);
+      border-radius:17px;
+    }
+    .maintenance-icon{
+      width:35px;height:35px;
+      display:grid;place-items:center;
+      border-radius:11px;
+      background:rgba(29,184,135,.12);
+      color:var(--cyan);
+      margin-bottom:14px;
+      font-weight:900;
+    }
+    .maintenance-item h3{
+      font-size:14px;
+      margin-bottom:6px;
+    }
+    .maintenance-item p{
+      color:#87949C;
+      font-size:12px;
+      line-height:1.6;
+    }
+
+    /* CTA */
+    .cta{
+      padding:85px 0;
+      background:linear-gradient(180deg,#fff,#F6FAF8);
+      text-align:center;
+    }
+    .cta-box{
+      max-width:850px;
+      margin:auto;
+      padding:48px 30px;
+      border-radius:27px;
+      background:linear-gradient(135deg,#E8F9F3,#FFFDF2);
+      border:1px solid #E4EEE9;
+    }
+    .cta h2{
+      font-size:clamp(29px,4vw,43px);
+      line-height:1.05;
+      letter-spacing:-1.6px;
+      margin-bottom:12px;
+    }
+    .cta p{
+      color:var(--text-secondary);
+      max-width:600px;
+      margin:0 auto 24px;
+      font-size:14px;
+    }
+    .cta .btn{display:inline-flex;margin:0 auto;padding-left:25px;padding-right:25px}
+
+    footer{
+      padding:25px 0;
+      background:var(--dark);
+      color:#7F8A92;
+      font-size:12px;
+      text-align:center;
+    }
+    footer strong{color:#fff}
+
+    @media(max-width:980px){
+      .cards{grid-template-columns:1fr;max-width:650px;margin:auto}
+      .maintenance-grid{grid-template-columns:repeat(2,1fr)}
+      .nav-links{gap:15px}
+    }
+    @media(max-width:650px){
+      .container{width:min(var(--container),calc(100% - 28px))}
+      .nav{min-height:68px}
+      .nav-links li:not(:last-child){display:none}
+      .nav-links{gap:0}
+      h1{letter-spacing:-2.4px}
+      .hero{padding:70px 0 55px}
+      .pricing{padding-top:20px;padding-bottom:75px}
+      .card-top,.card-body{padding-left:22px;padding-right:22px}
+      .maintenance-grid{grid-template-columns:1fr}
+      .why,.cta{padding:70px 0}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#">Tarj<span>ex</span> - Servicios</a>
+      <ul class="nav-links">
+        <li><a href="#precios">Precios</a></li>
+        <li><a href="#mantenimiento">Mantenimiento</a></li>
+        <li><a class="nav-cta" href="#index.html">Inicio</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="eyebrow"><i></i> Servicios Tarjex</span>
+        <h1>Elegí lo que tu negocio <em>necesita.</em></h1>
+        <p>
+          Soluciones digitales simples, profesionales y pensadas para que tu negocio
+          tenga una mejor presencia y conecte con sus clientes.
+        </p>
+      </div>
+    </section>
+
+    <section id="precios" class="pricing">
+      <div class="container">
+        <div class="cards">
+
+          <!-- TARJETA DE RESEÑAS -->
+          <article class="card">
+            <div class="card-top">
+              <div class="number">01</div>
+              <span class="tag">Una compra</span>
+              <h2>Tarjeta de reseñas</h2>
+              <p class="card-description">
+                Facilitá que tus clientes dejen una reseña, visiten tus redes
+                o contacten con tu negocio con un simple toque.
+              </p>
+            </div>
+            <div class="card-body">
+              <div class="price-box">
+                <div class="price-label">Precio</div>
+                <div class="price">Desde $20.000</div>
+                <div class="price-note">Por tarjeta personalizada</div>
+              </div>
+
+              <ul class="features">
+                <li><span class="check">✓</span>Tarjeta personalizada con tu marca</li>
+                <li><span class="check">✓</span>Chip NFC configurado</li>
+                <li><span class="check">✓</span>QR de acceso</li>
+                <li><span class="check">✓</span>Enlace a reseñas, redes o WhatsApp</li>
+              </ul>
+
+              <a class="btn" href="#contacto">Quiero mi tarjeta →</a>
+            </div>
+          </article>
+
+          <!-- MENU DIGITAL -->
+          <article class="card menu-card">
+            <span class="recommended">NUEVO</span>
+            <div class="card-top">
+              <div class="number">02</div>
+              <span class="tag">Pago único + mantenimiento</span>
+              <h2>Menú digital</h2>
+              <p class="card-description">
+                Una web de menú diseñada con logo, colores e identidad para tu negocio, con tus categorías,
+                productos, precios, fotos y acceso mediante QR y chip NFC.
+              </p>
+            </div>
+            <div class="card-body">
+
+              <div class="menu-pricing">
+                <div class="menu-payment">
+                  <div class="payment-title">Pago único</div>
+                  <div class="payment-price">$85.000</div>
+                  <div class="payment-text">
+                    Incluye desarrollo y diseño de la página web del menú
+                    + 2 carteles de menú de regalo.
+                  </div>
+                </div>
+
+                <div class="menu-payment monthly">
+                  <div class="payment-title">Mantenimiento mensual</div>
+                  <div class="payment-price">$30.000 <small>/ mes</small></div>
+                  <div class="payment-text">
+                    Para mantener tu menú funcionando, actualizado y respaldado.
+                  </div>
+                </div>
+              </div>
+
+              <div class="maintenance">
+                <h3>¿Qué incluye el mantenimiento?</h3>
+                <ul class="features">
+                  <li><span class="check">✓</span>Hosting y funcionamiento de la web</li>
+                  <li><span class="check">✓</span>Soporte ante problemas</li>
+                  <li><span class="check">✓</span>Actualización de productos y precios</li>
+                  <li><span class="check">✓</span>Cambios en el diseño del menú web</li>
+                  <li><span class="check">✓</span>Actualización de la página</li>
+                  <li><span class="check">✓</span>Mantenimiento si correspode del chip NFC o QR</li>
+                </ul>
+              </div>
+
+              <div class="extra">
+                <strong>Tarjetas adicionales:</strong> $18.000 cada una.
+                Las 2 tarjetas iniciales están incluidas en el desarrollo.
+              </div>
+
+              <a class="btn" href="#contacto" style="margin-top:18px">Quiero mi menú →</a>
+            </div>
+          </article>
+
+          <!-- PAGINA WEB -->
+          <article class="card">
+            <div class="card-top">
+              <div class="number">03</div>
+              <span class="tag">Proyecto a medida</span>
+              <h2>Página web</h2>
+              <p class="card-description">
+                Una página profesional para mostrar tu negocio, tus productos
+                o servicios y facilitar que tus clientes se contacten.
+              </p>
+            </div>
+            <div class="card-body">
+              <div class="price-box">
+                <div class="price-label">Precio</div>
+                <div class="price">Desde $170.000</div>
+                <div class="price-note">Según el proyecto</div>
+              </div>
+
+              <ul class="features">
+                <li><span class="check">✓</span>Diseño personalizado</li>
+                <li><span class="check">✓</span>Información del negocio</li>
+                <li><span class="check">✓</span>Galería o catálogo</li>
+                <li><span class="check">✓</span>Botón de WhatsApp</li>
+                <li><span class="check">✓</span>Publicación y configuración</li>
+              </ul>
+
+              <a class="btn btn-outline" href="#contacto">Consultar página web →</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="mantenimiento" class="why">
+      <div class="container">
+        <div class="why-head">
+          <div class="why-kicker">Mantenimiento mensual</div>
+          <h2>Tu menú no termina cuando se publica.</h2>
+          <p>
+            El mantenimiento permite que la página siga funcionando correctamente
+            y que puedas hacer cambios sin tener que volver a pagar el desarrollo
+            desde cero cada vez que necesitás actualizar algo.
+          </p>
+        </div>
+
+        <div class="maintenance-grid">
+          <div class="maintenance-item">
+            <div class="maintenance-icon">↗</div>
+            <h3>Hosting</h3>
+            <p>Nos ocupamos de mantener tu página publicada y funcionando.</p>
+          </div>
+          <div class="maintenance-item">
+            <div class="maintenance-icon">✦</div>
+            <h3>Diseño</h3>
+            <p>Cambios visuales y ajustes del diseño del menú web.</p>
+          </div>
+          <div class="maintenance-item">
+            <div class="maintenance-icon">≡</div>
+            <h3>Menú actualizado</h3>
+            <p>Cambio y actualización de precios, productos y contenido.</p>
+          </div>
+          <div class="maintenance-item">
+            <div class="maintenance-icon">✓</div>
+            <h3>Soporte</h3>
+            <p>Si un QR o chip NFC deja de funcionar, realizamos el mantenimiento correspondiente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="cta">
+      <div class="container">
+        <div class="cta-box">
+          <h2>¿No sabés cuál necesitás?</h2>
+          <p>
+            Contanos qué tiene tu negocio y qué querés mejorar.
+            Te recomendamos la opción más adecuada para vos.
+          </p>
+          <a class="btn" href="https://wa.me/549XXXXXXXXXX" target="_blank" rel="noopener">
+            Hablar por WhatsApp →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container"><strong>Tarjex</strong> · Herramientas digitales para tu negocio.</div>
+  </footer>
+</body>
+</html>
