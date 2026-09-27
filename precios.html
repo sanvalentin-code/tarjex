@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarjex | Precios</title>
+  <meta name="description" content="Precios de Tarjex: carteles inteligentes con NFC y QR que se adaptan a las necesidades de cada negocio.">
+  <style>
+    :root{
+      --cyan:#1DB887;
+      --cyan-dark:#0D9F76;
+      --yellow:#F4D574;
+      --dark:#0B1117;
+      --dark-2:#111A22;
+      --white:#fff;
+      --gray-light:#F6F8F9;
+      --gray-medium:#E5E9EC;
+      --gray-dark:#66717D;
+      --text-primary:#101820;
+      --text-secondary:#65717D;
+      --container:1180px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text-primary);
+      background:#fff;
+      line-height:1.5;
+    }
+    a{text-decoration:none;color:inherit}
+    .container{width:min(var(--container),calc(100% - 40px));margin:auto}
+
+    /* NAV */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,255,255,.88);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(16,24,32,.07);
+    }
+    .nav{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:30px;
+    }
+    .logo{
+      font-size:27px;
+      font-weight:850;
+      letter-spacing:-1.5px;
+    }
+    .logo span{color:var(--cyan)}
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      list-style:none;
+      color:var(--gray-dark);
+      font-size:14px;
+      font-weight:600;
+    }
+    .nav-links a{transition:.2s ease}
+    .nav-links a:hover{color:var(--text-primary)}
+    .nav-cta{
+      padding:11px 18px;
+      border-radius:12px;
+      background:var(--cyan);
+      color:#fff!important;
+      box-shadow:0 8px 20px rgba(29,184,135,.18);
+    }
+
+    /* HERO */
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:92px 0 72px;
+      text-align:center;
+      background:
+        radial-gradient(circle at 15% 20%,rgba(29,184,135,.10),transparent 28%),
+        radial-gradient(circle at 85% 10%,rgba(244,213,116,.13),transparent 25%),
+        linear-gradient(180deg,#fff 0%,#F7FAF9 100%);
+    }
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:420px;height:420px;
+      right:-210px;top:-220px;
+      border:1px solid rgba(29,184,135,.16);
+      border-radius:50%;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 12px;
+      border:1px solid rgba(29,184,135,.18);
+      border-radius:999px;
+      background:rgba(29,184,135,.06);
+      color:var(--cyan-dark);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+      margin-bottom:20px;
+    }
+    .eyebrow i{
+      width:7px;height:7px;border-radius:50%;
+      background:var(--cyan);
+      display:block;
+    }
+    h1{
+      max-width:780px;
+      margin:auto;
+      font-size:clamp(42px,6vw,72px);
+      line-height:.98;
+      letter-spacing:-3.5px;
+      font-weight:850;
+    }
+    h1 em{
+      font-style:normal;
+      background:linear-gradient(100deg,#11A97E,#1DB887 48%,#D8B73E);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .hero p{
+      max-width:650px;
+      margin:24px auto 0;
+      color:var(--text-secondary);
+      font-size:17px;
+      line-height:1.8;
+    }
+
+    /* PRICING */
+    .pricing{
+      padding:35px 0 105px;
+      background:linear-gradient(180deg,#F7FAF9 0%,#fff 35%);
+    }
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:22px;
+      align-items:stretch;
+    }
+    .card{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+      background:#fff;
+      border:1px solid #E7ECEE;
+      border-radius:25px;
+      box-shadow:0 15px 42px rgba(15,20,25,.055);
+      transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+    }
+    .card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 25px 60px rgba(15,20,25,.09);
+      border-color:rgba(29,184,135,.28);
+    }
+    .card-top{
+      padding:30px 28px 22px;
+      border-bottom:1px solid #EEF1F2;
+    }
+    .number{
+      width:38px;height:38px;
+      display:grid;place-items:center;
+      border-radius:12px;
+      background:#E4FAF2;
+      color:var(--cyan-dark);
+      font-weight:850;
+      font-size:13px;
+      margin-bottom:20px;
+    }
+    .tag{
+      color:var(--cyan-dark);
+      font-size:11px;
+      font-weight:850;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:8px;
+      display:block;
+    }
+    .card h2{
+      font-size:27px;
+      line-height:1.1;
+      letter-spacing:-1px;
+      margin-bottom:11px;
+    }
+    .card-description{
+      color:var(--text-secondary);
+      font-size:14px;
+      line-height:1.7;
+    }
+    .card-body{
+      padding:25px 28px 28px;
+      display:flex;
+      flex-direction:column;
+      flex:1;
+    }
+    .price-box{
+      padding:17px;
+      border-radius:16px;
+      background:linear-gradient(135deg,#F7FAF9,#fff);
+      border:1px solid #E9EFED;
+      margin-bottom:20px;
+    }
+    .price-label{
+      color:var(--gray-dark);
+      font-size:11px;
+      font-weight:750;
+      text-transform:uppercase;
+      letter-spacing:.07em;
+    }
+    .price{
+      margin-top:4px;
+      font-size:31px;
+      font-weight:850;
+      letter-spacing:-1.2px;
+    }
+    .price small{
+      font-size:14px;
+      font-weight:650;
+      color:var(--gray-dark);
+      letter-spacing:0;
+    }
+    .price-note{
+      margin-top:2px;
+      color:var(--gray-dark);
+      font-size:12px;
+    }
+    .features{
+      list-style:none;
+      display:grid;
+      gap:12px;
+      margin:4px 0 26px;
+    }
+    .features li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      color:#26333C;
+      font-size:13px;
+      line-height:1.5;
+    }
+    .check{
+      flex:0 0 20px;
+      width:20px;height:20px;
+      display:grid;place-items:center;
+      border-radius:50%;
+      background:#E5F8F1;
+      color:var(--cyan);
+      font-size:11px;
+      font-weight:900;
+      margin-top:1px;
+    }
+    .btn{
+      margin-top:auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      min-height:48px;
+      padding:12px 18px;
+      border-radius:13px;
+      background:var(--cyan);
+      color:#fff;
+      font-size:13px;
+      font-weight:800;
+      box-shadow:0 9px 22px rgba(29,184,135,.18);
+      transition:.2s ease;
+    }
+    .btn:hover{background:var(--cyan-dark);transform:translateY(-2px)}
+    .btn-outline{
+      background:#fff;
+      color:var(--cyan-dark);
+      border:1px solid rgba(29,184,135,.35);
+      box-shadow:none;
+    }
+    .btn-outline:hover{background:#F2FBF8}
+    .extra{
+      margin-top:17px;
+      padding:13px 14px;
+      border-radius:13px;
+      background:#FBFAF2;
+      border:1px solid rgba(244,213,116,.45);
+      color:#635827;
+      font-size:12px;
+      line-height:1.55;
+    }
+    .extra strong{color:#4E451F}
+
+    /* MAINTENANCE EXPLAINER */
+    .why{
+      padding:90px 0;
+      background:var(--dark);
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+    }
+    .why:before{
+      content:"";
+      position:absolute;
+      width:520px;height:520px;
+      left:-250px;bottom:-300px;
+      border:1px solid rgba(29,184,135,.2);
+      border-radius:50%;
+    }
+    .why-head{
+      max-width:680px;
+      margin-bottom:38px;
+    }
+    .why-kicker{
+      color:var(--cyan);
+      font-size:11px;
+      font-weight:850;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      margin-bottom:10px;
+    }
+    .why h2{
+      font-size:clamp(30px,4vw,46px);
+      line-height:1.05;
+      letter-spacing:-1.8px;
+      margin-bottom:15px;
+    }
+    .why-head p{
+      color:#AEB9C0;
+      font-size:15px;
+      line-height:1.8;
+    }
+    .maintenance-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:13px;
+    }
+    .maintenance-item{
+      padding:20px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.025);
+      border-radius:17px;
+    }
+    .maintenance-icon{
+      width:35px;height:35px;
+      display:grid;place-items:center;
+      border-radius:11px;
+      background:rgba(29,184,135,.12);
+      color:var(--cyan);
+      margin-bottom:14px;
+      font-weight:900;
+    }
+    .maintenance-item h3{
+      font-size:14px;
+      margin-bottom:6px;
+    }
+    .maintenance-item p{
+      color:#87949C;
+      font-size:12px;
+      line-height:1.6;
+    }
+
+    /* CTA */
+    .cta{
+      padding:85px 0;
+      background:linear-gradient(180deg,#fff,#F6FAF8);
+      text-align:center;
+    }
+    .cta-box{
+      max-width:850px;
+      margin:auto;
+      padding:48px 30px;
+      border-radius:27px;
+      background:linear-gradient(135deg,#E8F9F3,#FFFDF2);
+      border:1px solid #E4EEE9;
+    }
+    .cta h2{
+      font-size:clamp(29px,4vw,43px);
+      line-height:1.05;
+      letter-spacing:-1.6px;
+      margin-bottom:12px;
+    }
+    .cta p{
+      color:var(--text-secondary);
+      max-width:600px;
+      margin:0 auto 24px;
+      font-size:14px;
+    }
+    .cta .btn{display:inline-flex;margin:0 auto;padding-left:25px;padding-right:25px}
+
+    footer{
+      padding:25px 0;
+      background:var(--dark);
+      color:#7F8A92;
+      font-size:12px;
+      text-align:center;
+    }
+    footer strong{color:#fff}
+
+    @media(max-width:980px){
+      .cards{grid-template-columns:1fr;max-width:650px;margin:auto}
+      .maintenance-grid{grid-template-columns:repeat(2,1fr)}
+      .nav-links{gap:15px}
+    }
+    @media(max-width:650px){
+      .container{width:min(var(--container),calc(100% - 28px))}
+      .nav{min-height:68px}
+      .nav-links li:not(:last-child){display:none}
+      .nav-links{gap:0}
+      h1{letter-spacing:-2.4px}
+      .hero{padding:70px 0 55px}
+      .pricing{padding-top:20px;padding-bottom:75px}
+      .card-top,.card-body{padding-left:22px;padding-right:22px}
+      .maintenance-grid{grid-template-columns:1fr}
+      .why,.cta{padding:70px 0}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#">Tarj<span>ex</span> - Servicios</a>
+      <ul class="nav-links">
+        <li><a href="#precios">Precios</a></li>
+        <li><a href="#incluye">Incluye</a></li>
+        <li><a class="nav-cta" href="index.html">Inicio</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="eyebrow"><i></i> Carteles inteligentes</span>
+        <h1>Un cartel. El uso que tu negocio <em>necesita.</em></h1>
+        <p>
+          Un cartel físico con NFC y QR que puede llevar a tus clientes a la acción que
+          realmente necesitás. Diseñamos y configuramos el cartel según tu negocio.
+        </p>
+      </div>
+    </section>
+
+    <section id="precios" class="pricing">
+      <div class="container">
+        <div class="cards">
+
+          <article class="card">
+            <div class="card-top">
+              <div class="number">01</div>
+              <span class="tag">Cartel inteligente</span>
+              <h2>Desde $18.000</h2>
+              <p class="card-description">
+                Un cartel físico personalizado con NFC + QR, configurado para una necesidad
+                concreta de tu negocio.
+              </p>
+            </div>
+            <div class="card-body">
+              <div class="price-box">
+                <div class="price-label">Precio inicial</div>
+                <div class="price">Desde $18.000</div>
+                <div class="price-note">Según tamaño, diseño y configuración</div>
+              </div>
+              <ul class="features">
+                <li><span class="check">✓</span>Cartel personalizado con tu marca</li>
+                <li><span class="check">✓</span>NFC + QR para facilitar el acceso</li>
+                <li><span class="check">✓</span>Destino configurado según tu necesidad</li>
+                <li><span class="check">✓</span>Diseño y puesta en funcionamiento</li>
+                <li><span class="check">✓</span>Listo para colocar en tu negocio</li>
+              </ul>
+              <div class="extra">
+                <strong>¿Qué puede hacer?</strong> Reseñas, turnos, pedidos, información,
+                promociones, formularios, contacto o cualquier otra acción útil para tu negocio.
+              </div>
+              <a class="btn" href="https://wa.me/5493513250693">Quiero mi cartel →</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <div class="number">02</div>
+              <span class="tag">Más de un punto</span>
+              <h2>Pedido por cantidad</h2>
+              <p class="card-description">
+                Si necesitás varios carteles para distintas zonas, sucursales o necesidades,
+                armamos el pedido a medida.
+              </p>
+            </div>
+            <div class="card-body">
+              <div class="price-box">
+                <div class="price-label">Precio</div>
+                <div class="price">Consultá</div>
+                <div class="price-note">Según cantidad y configuración</div>
+              </div>
+              <ul class="features">
+                <li><span class="check">✓</span>Precios especiales por cantidad</li>
+                <li><span class="check">✓</span>Varios carteles para un mismo negocio</li>
+                <li><span class="check">✓</span>Distintas necesidades en cada cartel</li>
+                <li><span class="check">✓</span>Diseño coherente con la identidad del negocio</li>
+                <li><span class="check">✓</span>Configuración de cada NFC y QR</li>
+              </ul>
+              <div class="extra">
+                <strong>Ideal para:</strong> locales con varios sectores, sucursales, restaurantes,
+                gimnasios y comercios que necesitan más de un punto de interacción.
+              </div>
+              <a class="btn btn-outline" href="https://wa.me/5493513250693">Consultar cantidad →</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <div class="number">03</div>
+              <span class="tag">Distribuidores y negocios</span>
+              <h2>Pedidos mayoristas</h2>
+              <p class="card-description">
+                Carteles NFC y QR para comprar varias unidades, revender o implementar
+                en distintos negocios.
+              </p>
+            </div>
+            <div class="card-body">
+              <div class="price-box">
+                <div class="price-label">Precio</div>
+                <div class="price">Consultá</div>
+                <div class="price-note">Cotización según cantidad</div>
+              </div>
+              <ul class="features">
+                <li><span class="check">✓</span>Valores mayoristas por volumen</li>
+                <li><span class="check">✓</span>Chips NFC disponibles por separado</li>
+                <li><span class="check">✓</span>Carteles listos para implementar</li>
+                <li><span class="check">✓</span>Configuración según cada pedido</li>
+                <li><span class="check">✓</span>Opción de trabajar con identidad propia</li>
+              </ul>
+              <div class="extra">
+                <strong>¿Querés revender?</strong> Escribinos con la cantidad que necesitás
+                y te pasamos una cotización mayorista.
+              </div>
+              <a class="btn btn-outline" href="https://wa.me/5493513250693">Pedir cotización →</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="incluye" class="why">
+      <div class="container">
+        <div class="why-head">
+          <div class="why-kicker">¿Qué estás comprando?</div>
+          <h2>No es un cartel para una sola cosa.</h2>
+          <p>
+            El valor está en que el mismo formato puede adaptarse a distintas necesidades.
+            Definimos qué querés conseguir y configuramos el NFC y el QR para llevar al cliente
+            directamente a esa acción.
+          </p>
+        </div>
+        <div class="maintenance-grid">
+          <div class="maintenance-item"><div class="maintenance-icon">★</div><h3>Conseguí reseñas</h3><p>Facilitá que tus clientes lleguen a dejar una opinión sobre tu negocio.</p></div>
+          <div class="maintenance-item"><div class="maintenance-icon">◷</div><h3>Tomá turnos</h3><p>Llevá al cliente directamente a tu sistema de reservas o agenda.</p></div>
+          <div class="maintenance-item"><div class="maintenance-icon">＋</div><h3>Recibí pedidos</h3><p>Usalo como punto de acceso para pedidos, formularios o solicitudes.</p></div>
+          <div class="maintenance-item"><div class="maintenance-icon">↗</div><h3>Mostrá información</h3><p>Compartí indicaciones, instrucciones, promociones o información útil.</p></div>
+          <div class="maintenance-item"><div class="maintenance-icon">%</div><h3>Promocioná algo</h3><p>Convertí el cartel en un acceso rápido a una oferta o beneficio.</p></div>
+          <div class="maintenance-item"><div class="maintenance-icon">∞</div><h3>Una necesidad específica</h3><p>Si tu negocio necesita otra cosa, el cartel se configura para eso.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="cta">
+      <div class="container">
+        <div class="cta-box">
+          <h2>¿Qué necesitás resolver en tu negocio?</h2>
+          <p>
+            Contanos qué querés que haga el cartel y te decimos cómo podemos configurarlo.
+          </p>
+          <a class="btn" href="https://wa.me/5493513250693" target="_blank" rel="noopener">
+            Hablar por WhatsApp →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container"><strong>Tarjex</strong> · Carteles inteligentes que solucionan necesidades.</div>
+  </footer>
+</body>
+</html>
